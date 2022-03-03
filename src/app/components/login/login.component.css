@@ -1,0 +1,36 @@
+body {
+  background-color:#1a3b47 !important;
+  -webkit-font-smoothing: antialiased;
+  font: normal 14px Roboto,arial,sans-serif;
+}
+
+.box-login {
+  width: 406px;
+}
+
+.full-login {
+  min-height: 100%;
+  margin: auto 0;
+  height: 100%;
+
+}
+
+.form-login {
+    border-radius: 5px;
+}
+
+h4 {
+ border:0 solid #fff;
+ border-bottom-width:1px;
+ padding-bottom:10px;
+ text-align: center;
+ color: white;
+}
+
+.form-control {
+    border-radius: 5px;
+}
+
+.wrapper {
+    text-align: center;
+}

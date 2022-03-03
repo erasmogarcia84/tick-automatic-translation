@@ -1,0 +1,72 @@
+<app-navbar></app-navbar>
+
+<div class="container-fluid">
+  <div class="row d-flex">
+    <div class="col-12 px-4">
+
+      <table class="table table-striped mb-5 text-center">
+        <thead>
+          <tr>
+            <th style="width:40%;"><h3 class="display-4 my-3 text-center main-color">Basic</h3></th>
+            <th style="width:20%;"></th>
+            <th style="width:40%;"><h3 class="display-4 my-3 text-center main-color">Pro</h3></th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- IDIOMAS -->
+          <tr>
+            <td class="align-middle">
+              <span *ngFor="let lang of DEEPL.langsList">{{ lang }}, </span>
+            </td>
+            <td class="align-middle">
+              <h5 class="display-4 text-center">Idiomas</h5>
+            </td>
+            <td class="align-middle">
+              <span *ngFor="let lang of SDL.langsList">{{ lang }}, </span>
+            </td>
+          </tr>
+          <!-- ARCHIVOS -->
+          <tr>
+            <td class="align-middle">
+              <span class="d-block" *ngFor="let lang of DEEPL.fileTypes;">{{ lang }}, </span>
+            </td>
+            <td class="align-middle">
+              <h5 class="display-4 text-center">Tipos de archivo</h5>
+            </td>
+            <td class="align-middle">
+              <span *ngFor="let lang of SDL.fileTypes">{{ lang }}, </span>
+            </td>
+          </tr>
+          <!-- LÍMITES DE ARCHIVO -->
+          <tr>
+            <td class="align-middle">
+              <span>{{ DEEPL.fileLimits }}</span>
+            </td>
+            <td class="align-middle">
+              <h5 class="display-4 text-center">Límites por archivo</h5>
+            </td>
+            <td class="align-middle">
+              <span>{{ SDL.fileLimits }}</span>
+            </td>
+          </tr>
+          <!-- PERMANENCIA DE ARCHIVO -->
+          <tr>
+            <td class="align-middle">
+              <span>{{ DEEPL.filePermanency }}</span>
+            </td>
+            <td class="align-middle">
+              <h5 class="display-4 text-center">Permanencia de los archivos</h5>
+            </td>
+            <td class="align-middle">
+              <span>{{ SDL.filePermanency }}</span>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

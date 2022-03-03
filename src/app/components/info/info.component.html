@@ -1,0 +1,103 @@
+<app-navbar></app-navbar>
+
+<div class="container-fluid">
+  <div class="row d-flex">
+    <div class="col-6 bg-light px-4">
+      <h3 class="display-4 my-3 text-center">Idiomas</h3>
+      <p>Lista de idiomas devueltos por nuestro motor de Auto-detección.</p>
+      <table class="table table-striped mb-5">
+        <tbody>
+          <tr *ngFor="let lang of langsList; index as i">
+            <td *ngIf="i < 30"><b>{{ i*3+1 }}</b> {{ langsList[i*3] }}</td>
+            <td *ngIf="i < 30"><b>{{ i*3+2 }}</b> {{ langsList[i*3+1] }}</td>
+            <td *ngIf="i < 29"><b>{{ i*3+3 }}</b> {{ langsList[i*3+2] }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-6 bg-light px-4">
+      <h3 class="display-4 my-3 text-center">Archivos permitidos</h3>
+      <p>.</p>
+      <table class="table table-striped mb-5">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>File Extension</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>PLAIN</td>	<td>.txt</td>	<td>Plain text (UTF8)</td>
+          </tr>
+          <tr>
+            <td>XLINE</td>	<td>.xline</td>	<td>Plain text, one sentence per line</td>
+          </tr>
+          <tr>
+            <td>HTML</td>	<td>.htm, .html, .xhtml</td>	<td>HTML</td>
+          </tr>
+          <tr>
+            <td>XML</td>	<td>.xml</td>	<td>XML</td>
+          </tr>
+          <tr>
+            <td>SDLXML</td>	<td>.sdlxml</td>	<td>Treats every closing XML tag in the input as the end of a segment. The XML format in contrast does not make this assumption.</td>
+          </tr>
+          <tr>
+            <td>TMX</td>	<td>.tmx</td>	<td>Translation Memory eXchange</td>
+          </tr>
+          <tr>
+            <td>XLIFF</td>	<td>.xliff</td>	<td>XML Localization Interchange File Format</td>
+          </tr>
+          <tr>
+            <td>BCM</td>	<td>.bcm</td>	<td>SDL Proprietary format</td>
+          </tr>
+          <tr>
+            <td>PDF</td>	<td>.pdf</td>	<td>Adobe Acrobat (PDF)</td>
+          </tr>
+          <tr>
+            <td>RTF</td>	<td>.rtf</td>	<td>Rich Text Format (RTF)</td>
+          </tr>
+          <tr>
+            <td>DOCX</td>	<td>.docx, .dotx, .docm, .dotm</td>	<td>Microsoft Word (Office Open XML)</td>
+          </tr>
+          <tr>
+            <td>XLSX</td>	<td>.xlsx, .xltx, .xlsm, .xltm, .xlam, .xlsb</td>	<td>Microsoft Excel (Office Open XML)</td>
+          </tr>
+          <tr>
+            <td>PPTX</td>	<td>.pptx, .potx, .ppsx, .pptm, .potm, .ppsm</td>	<td>Microsoft PowerPoint (Office Open XML)</td>
+          </tr>
+          <tr>
+            <td>DOC</td>	<td>.doc, .dot</td>	<td>Microsoft Word (97-2003)</td>
+          </tr>
+          <tr>
+            <td>XLS</td>	<td>.xls, .xlt, .xla</td>	<td>Microsoft Excel (97-2003)</td>
+          </tr>
+          <tr>
+            <td>PPT</td>	<td>.ppt, .pot, .pps</td>	<td>Microsoft PowerPoint (97-2003)</td>
+          </tr>
+          <tr>
+            <td>ODT</td>	<td>.odt</td>	<td>OpenDocument Text</td>
+          </tr>
+          <tr>
+            <td>ODS</td>	<td>.ods</td>	<td>OpenDocument Spreadsheet</td>
+          </tr>
+          <tr>
+            <td>ODP</td>	<td>.odp</td>	<td>OpenDocument Presentation</td>
+          </tr>
+          <tr>
+            <td>GIF</td>	<td>.gif</td>	<td>Graphics Interchange Format (GIF)</td>
+          </tr>
+          <tr>
+            <td>JPG</td>	<td>.jpg, .jpeg</td>	<td>JPEG</td>
+          </tr>
+          <tr>
+            <td>PNG</td>	<td>.png</td>	<td>Portable Network Graphics (PNG)</td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

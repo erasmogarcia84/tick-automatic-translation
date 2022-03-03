@@ -1,0 +1,7 @@
+{
+  "/v2/*": {
+    "target": "https://api-free.deepl.com",
+    "secure": false,
+    "changeOrigin": true
+  }
+}

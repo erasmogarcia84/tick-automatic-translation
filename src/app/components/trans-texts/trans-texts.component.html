@@ -1,0 +1,129 @@
+<app-navbar></app-navbar>
+
+<div class="container-fluid">
+
+  <form [formGroup]="textForm" (ngSubmit)="toTranslate()">
+      <div class="row d-flex">
+
+        <div class="col-5 my-3 py-3">
+          <div class="form-group row">
+            <label for="formSourceLang" class="col-6 col-form-label">Idioma de entrada</label>
+            <div class="col-6">
+              <select class="form-control"
+                      name="translationSourceL"
+                      formControlName="translationSourceL"
+                      (change)="updateTargetLang($event)">
+                <option value="auto" selected>Auto-detectar</option>
+                <option *ngFor="let sourceLang of sourceLangs" [value]="sourceLang">
+                  {{ sourceLang | langsPipe }}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group text-center">
+            <textarea class="form-control"
+                      name="translationText"
+                      formControlName="translationText"
+                      rows="10">
+            </textarea>
+          </div>
+        </div>
+
+        <div class="col-2 align-self-center mt-5">
+          <button type="submit"
+                  class="btn btn-block btn-tick"
+                  (click)="toTranslate()"
+                  [disabled]="textForm.invalid">
+            <i *ngIf="!translationInProcess"
+               class="fas fa-language mr-2"></i>
+            <span *ngIf="translationInProcess"
+                  class="spinner-grow spinner-grow-sm mr-2" role="status" aria-hidden="true"></span>
+            Traducir
+          </button>
+
+          <!-- Translation process status
+          <p *ngIf="statusTranslation" class="text-center text-secondary d-block">{{ statusTranslation }}</p>
+          -->
+
+          <p *ngIf="countDeeplUsage" class="text-center text-secondary d-block">
+            <small>{{ countDeeplUsage }}</small>
+          </p>
+
+        </div>
+
+        <div class="col-5 my-3 py-3">
+          <div class="form-group row">
+            <label for="formTargetLang" class="col-6 col-form-label">Idioma de salida</label>
+            <div class="col-6">
+              <select class="form-control"
+                      name="translationTargetL"
+                      formControlName="translationTargetL"
+                      placeholder="Seleccionar"
+                      required>
+                <option *ngFor="let targetLang of targetLangs" [value]="targetLang">{{ targetLang | langsPipe }}</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group text-center">
+            <textarea class="form-control"
+                      name="translationTargetText"
+                      formControlName="translationTargetText"
+                      rows="10"
+                      #translatedTextInput
+                      readonly
+                      >
+            </textarea>
+          </div>
+          <button type="button"
+                  class="btn btn-block btn-tick"
+                  (click)="copyToClipboard(translatedTextInput)"
+                  [disabled]="textReadyToCopy">
+            <i class="fas fa-clone mr-2"></i>
+            Copiar texto traducido
+          </button>
+        </div>
+
+      </div>
+  </form>
+
+  <div *ngIf="statistics" class="row d-flex">
+
+    <div class="col-5">
+      <table class="table text-center">
+        <tbody>
+          <tr>
+            <td>Palabras</td>
+            <td>Caracteres</td>
+            <td>Bytes</td>
+          </tr>
+          <tr>
+            <td>{{ statistics.inputWordCount }}</td>
+            <td>{{ statistics.inputCharCount }}</td>
+            <td>{{ statistics.inputByteCount }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col-5 offset-2 text-center">
+      <table class="table">
+        <tbody>
+          <tr>
+            <td>Palabras</td>
+            <td>Caracteres</td>
+            <td>Bytes</td>
+          </tr>
+          <tr>
+            <td>{{ statistics.translationWordCount }}</td>
+            <td>{{ statistics.translationCharCount }}</td>
+            <td>{{ statistics.translationByteCount }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+</div>
+
+<app-footer></app-footer>

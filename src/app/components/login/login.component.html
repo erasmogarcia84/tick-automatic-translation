@@ -1,0 +1,50 @@
+<div class="container-fluid bg-tick full-login d-flex align-items-center justify-content-center">
+
+  <div class="fixed-top">
+    <img class="ml-4 mt-1 float-left" src="../../../assets/logo-tick-full.png" alt="Logo Tick">
+    <img class="mr-4 mt-1 float-right" src="../../../assets/logo-indra.png" alt="Logo Indra">
+  </div>
+
+  <div class="box-login mx-auto">
+    <div class="col-12 form-login bg-tick-secondary py-4 px-5">
+      <h4 class="mb-5">Inicio de sesión</h4>
+      <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+        <input type="text"
+               id="email"
+               name="email"
+               class="form-control input-sm chat-input mb-3"
+               formControlName="email"
+               placeholder="Correo electrónico"
+               required/>
+        <input type="password"
+               name="password"
+               id="userPassword"
+               class="form-control input-sm chat-input mb-4"
+               formControlName="password"
+               placeholder="Contraseña"
+               required/>
+        <div class="wrapper">
+          <span class="group-btn">
+            <button type="submit"
+                    class="btn btn-tick btn-block mb-3"
+                    [disabled]="loginForm.invalid">
+              Iniciar sesión
+              <i class="fa fa-sign-in"></i>
+            </button>
+          </span>
+          <a href="#"
+              class="text-light mt-4">
+              <small>
+              ¿Ha olvidado su contraseña?
+              </small>
+          </a>
+        </div>
+      </form>
+    </div>
+    <div class="col-12 mt-4 bg-tick-secondary text-white text-center py-4 rounded">
+      <p class="p-0 m-0">
+          TICK, YOUR GLOBAL LANGUAGE PARTNER
+      </p>
+    </div>
+  </div>
+</div>

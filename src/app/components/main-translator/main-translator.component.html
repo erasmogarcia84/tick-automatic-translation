@@ -1,0 +1,106 @@
+<app-navbar></app-navbar>
+
+<div class="container text-center my-auto">
+  <h1 class="display-4 my-5">Bienvenido a Traducciones Automáticas</h1>
+  <p class="text-justify">Tick Translations pone a vuestra disposición uno de los motores de traducción automática más potentes del mercado pero aún así, estamos hablando de traducción automática. Es una opción que puede servir para entender muy por encima el contexto o el significado <i>grosso modo</i> del contenido. Sin embargo, <b>no es la alternativa aconsejable para traducir textos técnicos, contratos, documentos jurídicos o financieros o publicitarios.</b></p>
+  <p class="text-justify">Las traducciones de la plataforma no son calidad certificada ISO.</p>
+  <p class="text-justify">En algunos tipos de formatos, como por ejemplo PDF de documentos escaneados o imágenes no editables, será necesario una maquetación para extraer bien todo el texto. En Tick Translations podremos ayudaros en todo momento. También, para realizar una revisión posterior. </p>
+  <!--
+    <button class="btn btn-block btn-tick my-5">Continuar</button>
+  -->
+</div>
+
+<app-footer></app-footer>
+
+
+<!--
+<form #formSDL="ngForm" (ngSubmit)="toTranslate(formSDL)">
+  <div class="container-fluid">
+    <div class="row">
+
+      <div class="col-5 bg-white my-3 py-3">
+        <div class="form-group">
+          <label for="exampleFormControlTextarea1">Texto de Entrada</label>
+          <textarea class="form-control"
+                    id="sourceTextArea"
+                    name="sourceTextArea"
+                    rows="5"
+                    ngModel
+                    required>
+          </textarea>
+        </div>
+
+        <div class="row">
+          <div class="col-12">
+
+            <div appNgDropFiles
+                [files]="files"
+                (mouseOnArea)="isOverElement = $event"
+                [ngClass]="{ 'file-over': isOverElement }"
+                class="well drop-zone mb-3">
+              <h5>Arraste el archivo aquí</h5>
+              <img src="../../../assets/drop-images.png" alt="">
+            </div>
+
+            <button (click)="uploadFiles()"
+                    class="btn btn-tick col-6">
+              Subir a Firebase
+            </button>
+            <button (click)="cleanFiles()"
+                    class="btn btn-light col-6">
+              Quitar documentos
+            </button>
+
+            <table class="table table-hover col-12 mt-3">
+              <thead>
+                <tr>
+                  <th>Archivo</th>
+                  <th>Tamaño</th>
+                  <th>Progresso</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let file of files">
+                  <td>
+                    {{ file.nameSourceFile }}
+                  </td>
+                  <td>
+                    {{ file.sourceFile.size / 1024 / 1024 | number: '.2-2' }} MB
+                  </td>
+                  <td>
+                    <div class="progress">
+                      <div class="progress-bar progress-bar-striped bg-tick" role="progressbar" [ngStyle]="{ 'width': file.progress + '%' }"></div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-2 d-flex">
+        <button type="submit" class="btn btn-block btn-tick align-self-center">
+          <i class="fas fa-language mr-2"></i>Traducir
+        </button>
+      </div>
+
+      <div class="col-5 bg-white my-3 py-3">
+        <div class="form-group">
+          <label for="exampleFormControlTextarea1">Texto de Salida</label>
+          <textarea class="form-control"
+                    id="targetTextArea"
+                    name="targetTextArea"
+                    rows="5"
+                    [ngModel]="translation"
+                    readonly
+                    >
+          </textarea>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</form>
+-->
+

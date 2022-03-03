@@ -1,0 +1,193 @@
+<app-navbar></app-navbar>
+
+<div class="container-fluid">
+
+  <form [formGroup]="fileForm" (ngSubmit)="uploadAndTranslate()">
+
+    <div class="row d-flex">
+      <h3 class="display-4 my-3 text-center main-color">Archivos</h3>
+
+      <div class="col-5 my-3 py-3">
+        <div class="form-group text-center">
+          <label>Archivo a traducir</label>
+
+          <div class="form-group row">
+            <label for="formSourceLang" class="col-6 col-form-label">Idioma de entrada</label>
+            <div class="col-6">
+              <select class="form-control"
+                      name="translationSourceL"
+                      formControlName="translationSourceL"
+                      (change)="updateTargetLang($event)"
+                      required>
+                <option value="auto" selected>Auto-detectar</option>
+                <option *ngFor="let sourceLang of sourceLangs" [value]="sourceLang">
+                  {{ sourceLang | langsPipe }}
+                </option>
+              </select>
+            </div>
+          </div>
+
+          <div appNgDropFiles
+              [selectedFile]="selectedFile"
+              (mouseOnArea)="isOverElement = $event"
+              [ngClass]="{ 'file-over': isOverElement }"
+              class="well drop-zone mb-3">
+            <h5 *ngIf="selectedFile">Listo</h5>
+            <img src="../../../assets/drop-images.png" alt="">
+          </div>
+        </div>
+
+        <input type="file"
+               class="d-none"
+               formControlName="selectedFile"
+               (change)="onFileSelected($event)"
+               #fileInput
+               required>
+
+        <button type="button"
+                class="btn btn-outline-secondary btn-block"
+                (click)="fileInput.click()">Seleccionar archivo </button>
+
+        <table *ngIf="selectedFile" class="table col-12 mt-3">
+          <thead>
+            <tr>
+              <th>Archivo</th>
+              <th>Tamaño</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                {{ selectedFile.name }}
+              </td>
+              <td>
+                {{ selectedFile.size / 1024 / 1024 | number: '.2-2' }} MB
+              </td>
+              <td>
+                <i (click)="cleanFiles()" class="fas fa-trash-alt icon-delete"></i>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+
+      <div class="col-2 align-self-center mt-5">
+        <button type="submit"
+                (click)="uploadAndTranslate()"
+                class="btn btn-block btn-tick"
+                [disabled]="fileForm.invalid">
+          <i *ngIf="!translationInProcess"
+             class="fas fa-language mr-2"></i>
+          <span *ngIf="translationInProcess"
+                class="spinner-grow spinner-grow-sm mr-2" role="status" aria-hidden="true"></span>
+            Traducir
+        </button>
+
+        <!-- Translation process status
+        <p *ngIf="statusTranslation" class="text-center text-secondary d-block">{{ statusTranslation }}</p>
+        -->
+        <p *ngIf="countDeeplUsage" class="text-center text-secondary d-block">
+          <small>{{ countDeeplUsage }}</small>
+        </p>
+
+      </div>
+
+      <div class="col-5 my-3 py-3">
+        <div class="form-group text-center">
+          <label for="exampleFormControlTextarea1">Archivo traducido</label>
+
+          <div class="form-group row">
+            <label for="formTargetLang" class="col-6 col-form-label">Idioma de salida</label>
+            <div class="col-6">
+              <select class="form-control"
+                      name="translationTargetL"
+                      formControlName="translationTargetL"
+                      placeholder="Seleccionar"
+                      required>
+                <option *ngFor="let targetLang of targetLangs" [value]="targetLang">{{ targetLang | langsPipe }}</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="well drop-zone mb-3">
+            <h5 *ngIf="statistics">Listo</h5>
+            <img *ngIf="statistics"
+                 src="../../../assets/drop-images.png"
+                 alt="Image file ready">
+          </div>
+        </div>
+
+        <button type="button"
+                class="btn btn-outline-secondary btn-block invisible"
+                (click)="fileInput.click()">Seleccionar archivo </button>
+
+        <table *ngIf="statistics"
+               class="table col-12 mt-3">
+          <thead>
+            <tr>
+              <th>Archivo</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                {{ outputFileName }}
+              </td>
+              <td>
+                <i *ngIf='APIBase === "SDL"' (click)="getFile()" class="fas fa-download"></i>
+                <a *ngIf='APIBase === "DEEPL"' [href]="" class="main-color">
+                  <i class="fas fa-download"></i>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+  </form>
+
+  <div *ngIf='statistics && APIBase === "SDL"' class="row d-flex mb-5">
+
+    <div class="col-5">
+      <table class="table text-center">
+        <tbody>
+          <tr>
+            <td>Palabras</td>
+            <td>Caracteres</td>
+            <td>Bytes</td>
+          </tr>
+          <tr>
+            <td>{{ statistics.inputWordCount }}</td>
+            <td>{{ statistics.inputCharCount }}</td>
+            <td>{{ statistics.inputByteCount }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col-5 offset-2 text-center">
+      <table class="table">
+        <tbody>
+          <tr>
+            <td>Palabras</td>
+            <td>Caracteres</td>
+            <td>Bytes</td>
+          </tr>
+          <tr>
+            <td>{{ statistics.translationWordCount }}</td>
+            <td>{{ statistics.translationCharCount }}</td>
+            <td>{{ statistics.translationByteCount }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
+
+<app-footer></app-footer>
